@@ -1,10 +1,17 @@
-# Getting Started with Create React App
+# Getting Started with BearPath CodeBase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+open your terminal on your computer and clone this repository
 
-## Available Scripts
+In your terminal:
 
-In the project directory, you can run:
+### `cd bear-market`
+
+### `npm install`
 
 ### `npm start`
 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
