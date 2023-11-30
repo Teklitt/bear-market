@@ -1,12 +1,8 @@
 import './global.css'
-import CategoryCard from './components/CategoryCard'
 import logo from './images/Bear Market logo.png'
+import Products from './components/Products/Products'
 
 function App() {
-  const category = {
-    name: 'Electronics',
-    description: 'Explore our electronic products.',
-  }
   return (
     <div className="App">
       <header className="App-header">
@@ -20,7 +16,8 @@ function App() {
         >
           Bear Market Figma
         </a>
-        <CategoryCard category={category} />
+
+        <Products />
       </header>
     </div>
   )
