@@ -1,8 +1,21 @@
 import './global.css'
-import logo from './images/Bear Market logo.png'
+import logo from '../src/assets/Bear Market logo.png'
 import Products from './components/Products/Products'
+import { commerce } from './lib/commerce'
+import { useState, useEffect } from 'react'
 
 function App() {
+  const [products, setProducts] = useState([])
+
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list()
+    setProducts(data)
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+  console.log(products)
   return (
     <div className="App">
       <header className="App-header">

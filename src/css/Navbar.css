@@ -1,34 +1,33 @@
 .navbar-logo {
-    height: 15vh;
-    width: 8vw;
-    border: none;
+  height: 10vh;
+  width: 8vw;
+  border: none;
 }
 
 .navbar-container {
-    background-color: #1B4383;
-    display: flex;
-    color: white;
-    text-align: center;
-    justify-content: space-evenly;
-    align-items: center;
-    height: 8vh;
+  background-color: #1b4383;
+  display: flex;
+  color: white;
+  text-align: center;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 8vh;
 }
 
 .navbar-container a {
-    color: white;
-    text-decoration: none;
-
+  color: white;
+  text-decoration: none;
 }
 
 .navbar-categories {
-    background-color: #F47937;
-    height: 5vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  background-color: #f47937;
+  height: 5vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .navbar-categories a {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
