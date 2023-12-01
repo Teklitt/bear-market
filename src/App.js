@@ -1,6 +1,7 @@
 import './global.css'
 import CategoryCard from './components/CategoryCard'
 import logo from './images/Bear Market logo.png'
+import banner from "./images/welcome banner.png"
 
 function App() {
   const category = {
@@ -10,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={banner} className="App-logo" alt="logo" />
         <p>Bear Market, Buy and Sell at Morgan State University.</p>
         <a
           className="App-link"
