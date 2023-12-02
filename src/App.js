@@ -1,13 +1,25 @@
 import './global.css'
-//import logo from './images/Bear Market logo.png'
+import logo from '../src/assets/Bear Market logo.png'
+import { commerce } from './lib/commerce'
+import { useState, useEffect } from 'react'
 import Products from './components/Products/Products';
 import banner from "./images/welcome banner.png";
 import Login from './Login';
-import { useState } from "react";
 import {signOut} from 'firebase/auth';
 import { auth } from './firebase-config';
 
 function App() {
+  const [products, setProducts] = useState([])
+
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list()
+    setProducts(data)
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+  console.log(products)
   const [isAuth, setIsAuth] = useState(false);
 
   const signUserOut = () => {

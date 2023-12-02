@@ -17,7 +17,7 @@ const products = [
     description: 'Used Computer Science Book',
     price: '$10',
     image:
-      'https://images.pexels.com/photos/601177/pexels-photo-601177.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlO3tlHgYgT1MxC5YE6zLJAKPUa1PugaqoZjKWAH3YyoDTqegxbvyOneD9XGQ8clF6uIQ&usqp=CAU',
   },
   {
     id: 3,
