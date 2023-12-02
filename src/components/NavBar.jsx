@@ -4,7 +4,7 @@ import '../css/Navbar.css'
 import { Badge, Typography, IconButton } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
-const NavBar = () => {
+const NavBar = ({ totalItems }) => {
   return (
     <nav>
       <div className="navbar-container">
@@ -26,7 +26,7 @@ const NavBar = () => {
         </a>
         <p>
           <IconButton aria-label="Show cart items" color="inherit">
-            <Badge badgeContent={5} color="secondary">
+            <Badge badgeContent={totalItems} color="secondary">
               <ShoppingCartIcon />
             </Badge>
           </IconButton>

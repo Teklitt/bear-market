@@ -1,4 +1,5 @@
 import React from 'react'
+import '../../../../src/css/Global.css'
 import {
   Card,
   CardMedia,
@@ -10,9 +11,9 @@ import {
 
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 
-const Product = ({ product }) => {
+const Product = ({ product, onAddToCart }) => {
   return (
-    <div>
+    <div className="product-card">
       <Card
         sx={{
           maxWidth: '100%',
@@ -20,10 +21,12 @@ const Product = ({ product }) => {
       >
         <CardMedia
           sx={{
-            height: 0,
+            height: '100px',
+            width: '100%',
+            objectFit: 'cover',
             paddingTop: '56.25%', // 16:9
           }}
-          image={product.image}
+          image={product.image.url}
           title={product.name}
         />
         <CardContent
@@ -32,15 +35,27 @@ const Product = ({ product }) => {
             justifyContent: 'space-between',
           }}
         >
+          {/* //Product name */}
           <div>
-            <Typography variant="h5" gutterBottom>
+            <Typography
+              variant="h7"
+              gutterBottom
+              className="product-card__name"
+            >
               {product.name}
             </Typography>
-            <Typography variant="h5">{product.price}</Typography>
+            {/* //product price */}
+            <Typography variant="h5" className="product-card__price">
+              {product.price.formatted_with_symbol}
+            </Typography>
           </div>
-          <Typography variant="body2" color="textSecondary">
-            {product.description}
-          </Typography>
+          {/* product description */}
+          <Typography
+            dangerouslySetInnerHTML={{ __html: product.description }}
+            variant="body2"
+            color="textSecondary"
+            className="product-card__description"
+          />
         </CardContent>
         <CardActions
           disableSpacing
@@ -49,7 +64,10 @@ const Product = ({ product }) => {
             justifyContent: 'flex-end',
           }}
         >
-          <IconButton aria-label="Add to Cart">
+          <IconButton
+            aria-label="Add to Cart"
+            onClick={() => onAddToCart(product.id, 1)}
+          >
             <AddShoppingCartIcon />
           </IconButton>
         </CardActions>
