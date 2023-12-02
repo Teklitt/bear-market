@@ -1,12 +1,21 @@
 import './global.css'
-import CategoryCard from './components/CategoryCard'
-import logo from './images/Bear Market logo.png'
-import banner from "./images/welcome banner.png"
+//import logo from './images/Bear Market logo.png'
+import Products from './components/Products/Products';
+import banner from "./images/welcome banner.png";
+import Login from './Login';
+import { useState } from "react";
+import {signOut} from 'firebase/auth';
+import { auth } from './firebase-config';
 
 function App() {
-  const category = {
-    name: 'Electronics',
-    description: 'Explore our electronic products.',
+  const [isAuth, setIsAuth] = useState(false);
+
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      window.location.reload(false);
+    })
   }
   return (
     <div className="App">
@@ -21,7 +30,9 @@ function App() {
         >
           Bear Market Figma
         </a>
-        <CategoryCard category={category} />
+
+        <Products />
+        {!isAuth ? <Login setIsAuth={setIsAuth} /> : <button onClick={signUserOut}>Log out of Google</button> }
       </header>
     </div>
   )
