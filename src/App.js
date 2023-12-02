@@ -47,14 +47,14 @@ function App() {
       <NavBar totalItems={cart.total_items} />
       <header className="App-header">
         <img src={banner} className="App-logo" alt="logo" />
-        <Products products={products} onAddToCart={handleAddToCart} />
-        <Cart cart={cart} />
-
         {!isAuth ? (
           <Login setIsAuth={setIsAuth} />
         ) : (
           <button onClick={signUserOut}>Log out of Google</button>
         )}
+        <Products products={products} onAddToCart={handleAddToCart} />
+        <Cart cart={cart} />
+
       </header>
     </div>
   )
