@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/Bear Market logo.png'
 import '../css/Navbar.css'
-import { Badge, Typography, IconButton } from '@mui/material'
+import { Badge, IconButton } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@mui/material/Button'
