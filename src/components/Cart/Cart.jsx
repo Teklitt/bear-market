@@ -1,42 +1,73 @@
 import React from 'react'
 import { Container, Typography, Button, Grid } from '@mui/material'
-import '../../../src/css/Global.css'
+import '../../css/Global.css'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
+import CartItem from './CartItem/CartItem'
+import { Link } from 'react-router-dom'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
+  const theme = createTheme({})
   const EmptyCart = () => (
     <Typography variant="subtitle1">
-      You have no items in your shopping cart, start adding some!
+      You have no items in your shopping cart,
+      <Link to="/" className="link">
+        start adding items!
+      </Link>
+      !
     </Typography>
   )
+  const handleEmptyCart = () => onEmptyCart()
   const FilledCart = () => (
     <>
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={4} key={item.id}>
-            <div>{item.name}</div>
+            <CartItem
+              item={item}
+              onUpdateCartQty={onUpdateCartQty}
+              onRemoveFromCart={onRemoveFromCart}
+            />
           </Grid>
         ))}
       </Grid>
       <div>
-        <div className="cardDetails">
-          <Typography variant="h4">
+        <div
+          sx={{
+            display: 'flex',
+            marginTop: '10%',
+            width: '100%',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Typography variant="h4" sx={{ marginTop: 10 }}>
             Subtotal: {cart.subtotal.formatted_with_symbol}
           </Typography>
         </div>
         <div>
           <Button
-            className="emptyButton"
+            sx={{
+              minWidth: '150px',
+              [theme.breakpoints.down('xs')]: {
+                marginBottom: '5px',
+              },
+              [theme.breakpoints.up('xs')]: {
+                marginRight: '20px',
+              },
+            }}
             size="large"
             type="button"
             variant="contained"
             color="secondary"
+            onClick={handleEmptyCart}
           >
             Empty Cart
           </Button>
           <Button
-            className="checkOutButton"
+            component={Link}
+            to="/Checkout"
+            sx={{ minWidth: '150px' }}
             size="large"
             type="button"
             variant="contained"
@@ -57,7 +88,7 @@ const Cart = ({ cart }) => {
   return (
     <Container>
       <div className="cart-container">
-        <Typography className="cart-title" variant="h3" gutterBottom>
+        <Typography className="" variant="h3" gutterBottom>
           Your Shopping Cart
         </Typography>
         {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}
