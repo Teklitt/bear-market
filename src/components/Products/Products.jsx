@@ -31,21 +31,20 @@ const Products = ({ products, onAddToCart }) => {
   }
   return (
     <>
-      <input
-        type="text"
-        placeholder="Search Bear Market"
-        value={searchText}
-        onChange={handleSearchChange}
-        required
-      />
-      <main>
+      <div class="input-group input-group-sm mb-3 mt-4 px-5">
+        <div class="input-group-prepend"></div>
         <input
           type="text"
-          placeholder="Search Bear Market"
+          class="form-control text-center rounded-4"
+          aria-label="Small"
+          aria-describedby="inputGroup-sizing-sm"
           value={searchText}
           onChange={handleSearchChange}
-          required
+          placeholder="Search Bear Market"
         />
+      </div>
+
+      <main>
         <Grid container justify="center" spacing={4}>
           {searchedResults.length > 0
             ? searchedResults.map((product) => (

@@ -61,7 +61,7 @@ const CartItem = ({ item, onUpdateCartQty, onRemoveFromCart }) => {
             </Button>
           </div>
           <Button
-            sx={{ marginLeft: 20 }}
+            sx={{ marginLeft: 15 }}
             variant="solid"
             color="danger"
             size="sm"

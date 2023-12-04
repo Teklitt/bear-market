@@ -26,7 +26,7 @@ const NavBar = ({ totalItems }) => {
             <button type="submit">Submit</button>
           </div>
           <p>
-            Hello Jin Guo, <br></br>
+            Hello Ebun, <br></br>
             <Button
               component={Link}
               to="/Profile"

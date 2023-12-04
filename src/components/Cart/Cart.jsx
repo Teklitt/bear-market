@@ -55,6 +55,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
               [theme.breakpoints.up('xs')]: {
                 marginRight: '20px',
               },
+              marginBottom: 2,
             }}
             size="large"
             type="button"
@@ -67,7 +68,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
           <Button
             component={Link}
             to="/Checkout"
-            sx={{ minWidth: '150px' }}
+            sx={{ minWidth: '150px', marginBottom: 2 }}
             size="large"
             type="button"
             variant="contained"
@@ -88,7 +89,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   return (
     <Container>
       <div className="cart-container">
-        <Typography className="" variant="h3" gutterBottom>
+        <Typography sx={{}} variant="h3" gutterBottom>
           Your Shopping Cart
         </Typography>
         {!cart.line_items.length ? <EmptyCart /> : <FilledCart />}

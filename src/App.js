@@ -1,32 +1,34 @@
 import './global.css'
-import logo from '../src/assets/Bear Market logo.png'
+
 import { commerce } from './lib/commerce'
 import { useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import Cart from './components/Cart/Cart'
 import Products from './components/Products/Products'
-import banner from './images/welcome banner.png'
+
 import Login from './Login'
 import { signOut } from 'firebase/auth'
 import { auth } from './firebase-config'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Checkout from './components/CheckoutForm/Checkout/Checkout'
-import Banner from './components/Carousel/Banner.jsx'
 import Profile from './components/Profile/Profile.jsx'
+import Carousel from './components/Carousel/Carousel.jsx'
+import { Button } from '@mui/material'
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
+
   const [cart, setCart] = useState({ line_items: [] })
   const [order, setOrder] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
 
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list()
+    const { data } = await commerce.products.list({ limit: 100 })
     setProducts(data)
   }
+  console.log(products)
   const fetchCategories = async () => {
     const { data } = await commerce.categories.list()
     //setCategories(data)
@@ -43,19 +45,6 @@ function App() {
     // console.log(cart)
   }
 
-  // const productsPerCategory = categories.reduce((acc, category) => {
-  //   return [
-  //     ...acc,
-  //     {
-  //       ...category,
-  //       productsData: products.filter((product) =>
-  //         product.categories.find((cat) => cat.id === category.id)
-  //       ),
-  //     },
-  //   ]
-  // }, [])
-
-  console.log(categories)
   const handleUpdateCartQty = async (productId, quantity) => {
     const item = await commerce.cart.update(productId, { quantity })
 
@@ -115,8 +104,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <NavBar totalItems={cart.total_items} />
-        <img src={banner} className="App-logo" alt="logo" />
-
+        <Carousel />
         <header className="App-header">
           <Routes>
             <Route
@@ -138,10 +126,7 @@ function App() {
                 <Products products={products} onAddToCart={handleAddToCart} />
               }
             />
-            <Route
-              path="/Categories"
-              element={<categories categories={categories} />}
-            />
+
             <Route
               path="/cart"
               element={
@@ -163,7 +148,7 @@ function App() {
           </Routes>
 
           <Link to="Products">
-            <button>Start Shopping</button>
+            <Button>Start Shopping</Button>
           </Link>
         </header>
       </div>

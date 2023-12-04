@@ -7,7 +7,8 @@ import CardContent from '@mui/joy/CardContent'
 import Typography from '@mui/joy/Typography'
 import Sheet from '@mui/joy/Sheet'
 import seller from '../../assets/professor.jpg'
-import {Link} from "react-router-dom"
+import avatar from '../../assets/profile avatar.svg'
+import { Link } from 'react-router-dom'
 
 export default function UserCard() {
   return (
@@ -65,16 +66,11 @@ export default function UserCard() {
         }}
       >
         <AspectRatio flex ratio="1" maxHeight={182} sx={{ minWidth: 182 }}>
-          <img
-            src={seller}
-            srcSet="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=286&dpr=2 2x"
-            loading="lazy"
-            alt=""
-          />
+          <img src={avatar} srcSet={avatar} loading="lazy" alt="" />
         </AspectRatio>
         <CardContent>
           <Typography fontSize="xl" fontWeight="lg">
-            Jin Guo
+            Ebun
           </Typography>
           <Typography level="body-sm" fontWeight="lg" textColor="text.tertiary">
             Seller
@@ -110,7 +106,12 @@ export default function UserCard() {
             </div>
           </Sheet>
           <Box sx={{ display: 'flex', gap: 1.5, '& > button': { flex: 1 } }}>
-            <Button component={Link} to="/Chat" variant="outlined" color="neutral">
+            <Button
+              component={Link}
+              to="/Chat"
+              variant="outlined"
+              color="neutral"
+            >
               Messages
             </Button>
             <Button variant="solid" color="primary">
