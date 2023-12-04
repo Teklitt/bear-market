@@ -18,6 +18,7 @@ import Profile from './components/Profile/Profile.jsx'
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [products, setProducts] = useState([])
+  const [categories, setCategories] = useState([])
   const [cart, setCart] = useState({ line_items: [] })
   const [order, setOrder] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
@@ -26,7 +27,11 @@ function App() {
     const { data } = await commerce.products.list()
     setProducts(data)
   }
-
+  const fetchCategories = async () => {
+    const { data } = await commerce.categories.list()
+    setCategories(data)
+  }
+  console.log(category.name)
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve())
   }
@@ -80,6 +85,7 @@ function App() {
   useEffect(() => {
     fetchProducts()
     fetchCart()
+    fetchCategories()
   }, [])
 
   const [isAuth, setIsAuth] = useState(false)
