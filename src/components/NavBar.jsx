@@ -22,6 +22,7 @@ const NavBar = ({ totalItems }) => {
           <div className="search-container">
             <button>Filter ⌄</button>
             <input type="text" placeholder="Search Bear Market" />
+
             <button type="submit">Submit</button>
           </div>
           <p>

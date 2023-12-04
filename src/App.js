@@ -29,9 +29,9 @@ function App() {
   }
   const fetchCategories = async () => {
     const { data } = await commerce.categories.list()
-    setCategories(data)
+    //setCategories(data)
   }
-  console.log(category.name)
+  // console.log(categories)
   const fetchCart = async () => {
     setCart(await commerce.cart.retrieve())
   }
@@ -39,10 +39,23 @@ function App() {
   const handleAddToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity)
     setCart(item)
-    console.log(item)
-    console.log(cart)
+    // console.log(item)
+    // console.log(cart)
   }
 
+  // const productsPerCategory = categories.reduce((acc, category) => {
+  //   return [
+  //     ...acc,
+  //     {
+  //       ...category,
+  //       productsData: products.filter((product) =>
+  //         product.categories.find((cat) => cat.id === category.id)
+  //       ),
+  //     },
+  //   ]
+  // }, [])
+
+  console.log(categories)
   const handleUpdateCartQty = async (productId, quantity) => {
     const item = await commerce.cart.update(productId, { quantity })
 
@@ -124,6 +137,10 @@ function App() {
               element={
                 <Products products={products} onAddToCart={handleAddToCart} />
               }
+            />
+            <Route
+              path="/Categories"
+              element={<categories categories={categories} />}
             />
             <Route
               path="/cart"
