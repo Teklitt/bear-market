@@ -20,3 +20,4 @@ npm install
 
 npm install @chec/commerce.js
 npm install firebase
+npm install react-router-dom
