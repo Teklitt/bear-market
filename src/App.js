@@ -26,7 +26,7 @@ function App() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category)
   }
-  console.log('selectedCategory in App:', selectedCategory)
+  //console.log('selectedCategory in App:', selectedCategory)
   const fetchProducts = async () => {
     const { data } = await commerce.products.list({ limit: 100 })
     setProducts(data)

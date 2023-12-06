@@ -22,7 +22,7 @@ const Category1 = ({ selectedCategory, onAddToCart }) => {
     fetchProducts()
   }, [selectedCategory])
 
-  console.log('selectedCategory in Category1:', selectedCategory)
+  //console.log('selectedCategory in Category1:', selectedCategory)
   return (
     <main>
       <Grid container justify="center" spacing={4}>
