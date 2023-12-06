@@ -4,6 +4,9 @@ import Banner2 from '../../images/Banner2.png'
 import Banner3 from '../../images/Banner3.png'
 import Banner4 from '../../images/Banner4.png'
 import Banner5 from '../../images/Banner5.png'
+import Banner6 from '../../images/Banner6.jpg'
+import Banner7 from '../../images/Banner7.jpg'
+import Banner8 from '../../images/Banner8.jpg'
 
 const Carousel = () => {
   return (
@@ -14,19 +17,28 @@ const Carousel = () => {
     >
       <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="3000">
-          <img src={Banner} class="d-block w-100" alt="..." />
+          <img src={Banner} class="d-block w-100" alt="..." height={300} />
         </div>
         <div class="carousel-item" data-bs-interval="3000">
-          <img src={Banner2} class="d-block w-100" alt="..." />
+          <img src={Banner2} class="d-block w-100" alt="..." height={300} />
         </div>
         <div class="carousel-item">
-          <img src={Banner3} class="d-block w-100" alt="..." />
+          <img src={Banner3} class="d-block w-100" alt="..." height={300} />
         </div>
         <div class="carousel-item">
-          <img src={Banner4} class="d-block w-100" alt="..." />
+          <img src={Banner4} class="d-block w-100" alt="..." height={300} />
         </div>
         <div class="carousel-item">
-          <img src={Banner5} class="d-block w-100" alt="..." />
+          <img src={Banner5} class="d-block w-100" alt="..." height={300} />
+        </div>
+        <div class="carousel-item">
+          <img src={Banner6} class="d-block w-100" alt="..." height={300} />
+        </div>
+        <div class="carousel-item">
+          <img src={Banner7} class="d-block w-100" alt="..." height={300} />
+        </div>
+        <div class="carousel-item">
+          <img src={Banner8} class="d-block w-100" alt="..." height={300} />
         </div>
       </div>
       <button

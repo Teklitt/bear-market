@@ -17,6 +17,7 @@ const PaymentForm = ({
   backStep,
   shippingData,
   onCaptureCheckout,
+  timeout,
 }) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault()
@@ -34,7 +35,7 @@ const PaymentForm = ({
       console.log('[error]', error)
     } else {
       const orderData = {
-        line_items: checkoutToken.live.line_items,
+        line_items: checkoutToken.line_items,
         customer: {
           firstname: shippingData.firstName,
           lastname: shippingData.lastName,
@@ -50,14 +51,20 @@ const PaymentForm = ({
         },
         fulfillment: { shipping_method: shippingData.shippingOption },
         payment: {
-          gateway: 'stripe',
-          stripe: {
-            payment_method_id: paymentMethod.id,
+          gateway: 'test_gateway',
+          card: {
+            number: '4242 4242 4242 4242',
+            expiry_month: '01',
+            expiry_year: '2023',
+            cvc: '123',
+            postal_zip_code: '94103',
           },
         },
       }
 
       onCaptureCheckout(checkoutToken.id, orderData)
+
+      timeout()
 
       nextStep()
     }
@@ -86,7 +93,7 @@ const PaymentForm = ({
                   disabled={!stripe}
                   color="primary"
                 >
-                  Pay {checkoutToken.live.subtotal.formatted_with_symbol}
+                  Pay {checkoutToken.subtotal.formatted_with_symbol}
                 </Button>
               </div>
             </form>

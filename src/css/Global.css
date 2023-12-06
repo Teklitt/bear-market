@@ -1,5 +1,7 @@
 .product-card {
   padding: 20px; /* Adjust the padding as needed */
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .product-card__name {
@@ -47,4 +49,10 @@
   margin-top: '10%';
   width: '100%';
   justify-content: 'space-between';
+}
+.zoomed-in-image {
+  width: 100%; /* Set the desired width */
+  height: 300px; /* Set the desired height */
+  object-fit: cover; /* Zoom in and maintain aspect ratio */
+  object-position: center center; /* Center the image */
 }

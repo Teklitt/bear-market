@@ -6,11 +6,31 @@ import Card from '@mui/joy/Card'
 import CardContent from '@mui/joy/CardContent'
 import Typography from '@mui/joy/Typography'
 import Sheet from '@mui/joy/Sheet'
-import seller from '../../assets/professor.jpg'
+
+import { useState, useEffect } from 'react'
+
 import avatar from '../../assets/profile avatar.svg'
 import { Link } from 'react-router-dom'
 
 export default function UserCard() {
+  const [name, setName] = useState(
+    localStorage.getItem('name') || 'Default Name'
+  )
+  const [email, setEmail] = useState(
+    localStorage.getItem('email') || 'default@example.com'
+  )
+  const [profilePic, setProfilePic] = useState(
+    localStorage.getItem('profilePic') || avatar
+  )
+  // State variable to track authentication status
+
+  useEffect(() => {
+    // Update local storage when name changes
+    localStorage.setItem('name', name)
+    localStorage.setItem('email', email)
+    localStorage.setItem('profilePic', profilePic)
+  }, [name, email, profilePic])
+
   return (
     <Box
       sx={{
@@ -65,16 +85,23 @@ export default function UserCard() {
           resize: 'horizontal',
         }}
       >
-        <AspectRatio flex ratio="1" maxHeight={182} sx={{ minWidth: 182 }}>
-          <img src={avatar} srcSet={avatar} loading="lazy" alt="" />
+        <AspectRatio
+          flex
+          ratio="1"
+          maxHeight={182}
+          sx={{ minWidth: 182, borderRadius: 182 }}
+        >
+          <img src={profilePic} srcSet={profilePic} loading="lazy" alt="" />
         </AspectRatio>
         <CardContent>
           <Typography fontSize="xl" fontWeight="lg">
-            Ebun
+            {name}
           </Typography>
-          <Typography level="body-sm" fontWeight="lg" textColor="text.tertiary">
+
+          {/* <Typography level="body-sm" fontWeight="lg" textColor="text.tertiary">
             Seller
-          </Typography>
+          </Typography> */}
+
           <Sheet
             sx={{
               bgcolor: 'background.level1',

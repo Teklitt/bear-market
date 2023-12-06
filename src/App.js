@@ -6,29 +6,32 @@ import NavBar from './components/NavBar'
 import Cart from './components/Cart/Cart'
 import Products from './components/Products/Products'
 
-import Login from './Login'
-import { signOut } from 'firebase/auth'
-import { auth } from './firebase-config'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Checkout from './components/CheckoutForm/Checkout/Checkout'
 import Profile from './components/Profile/Profile.jsx'
 import Carousel from './components/Carousel/Carousel.jsx'
 import { Button } from '@mui/material'
+import Chat from './components/Chat/Chat.jsx'
+import Category1 from './components/Category1/Category1.jsx'
 
 function App() {
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [products, setProducts] = useState([])
 
   const [cart, setCart] = useState({ line_items: [] })
   const [order, setOrder] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState(null)
 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category)
+  }
+  console.log('selectedCategory in App:', selectedCategory)
   const fetchProducts = async () => {
     const { data } = await commerce.products.list({ limit: 100 })
     setProducts(data)
   }
-  console.log(products)
+  //console.log(products)
   const fetchCategories = async () => {
     const { data } = await commerce.categories.list()
     //setCategories(data)
@@ -83,6 +86,7 @@ function App() {
       setErrorMessage(error.data.error.message)
     }
   }
+  //console.log(order)
 
   useEffect(() => {
     fetchProducts()
@@ -90,40 +94,31 @@ function App() {
     fetchCategories()
   }, [])
 
-  const [isAuth, setIsAuth] = useState(false)
-
-  const signUserOut = () => {
-    signOut(auth).then(() => {
-      localStorage.clear()
-      setIsAuth(false)
-      window.location.reload(false)
-    })
-  }
-
   return (
     <BrowserRouter>
       <div className="App">
-        <NavBar totalItems={cart.total_items} />
+        <NavBar
+          totalItems={cart.total_items}
+          onCategoryChange={handleCategoryClick}
+        />
         <Carousel />
         <header className="App-header">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  {!isAuth ? (
-                    <Login setIsAuth={setIsAuth} />
-                  ) : (
-                    <button onClick={signUserOut}>Log out of Google</button>
-                  )}
-                </>
-              }
-            />
+            <Route path="/Chat" element={<Chat />} />
 
             <Route
               path="/Products"
               element={
                 <Products products={products} onAddToCart={handleAddToCart} />
+              }
+            />
+            <Route
+              path="/Category1"
+              element={
+                <Category1
+                  selectedCategory={selectedCategory}
+                  onAddToCart={handleAddToCart}
+                />
               }
             />
 
@@ -138,13 +133,18 @@ function App() {
                 />
               }
             />
-            <Route path="/Checkout" element={<Checkout cart={cart} />} />
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
             <Route
-              path="/logout"
-              element={<button onClick={signUserOut}>Log out of Google</button>}
+              path="/Checkout"
+              element={
+                <Checkout
+                  cart={cart}
+                  order={order}
+                  onCaptureCheckout={handleCaptureCheckout}
+                  error={errorMessage}
+                />
+              }
             />
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
 
           <Link to="Products">

@@ -13,7 +13,13 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward'
 const Product = ({ product, onAddToCart }) => {
   return (
     <div className="product-card">
-      <Card sx={{ width: 320, maxWidth: '100%', boxShadow: 'lg' }}>
+      <Card
+        sx={{
+          width: 320,
+          maxWidth: '100%',
+          boxShadow: 'lg',
+        }}
+      >
         <CardOverflow>
           <AspectRatio sx={{ minWidth: 200 }}>
             <img src={product.image.url} alt={product.name} loading="lazy" />

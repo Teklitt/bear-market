@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
-import { TextField, Grid, inputLabel } from '@mui/material'
+import { TextField, Grid } from '@mui/material'
 
 function FormInput({ name, label, required }) {
   const { control } = useFormContext()
@@ -11,7 +11,16 @@ function FormInput({ name, label, required }) {
       <Controller
         control={control}
         name={name}
-        render={({ field }) => <TextField fullWidth label={label} required />}
+        render={({ field: { ref, ...field }, fieldState }) => (
+          <TextField
+            fullWidth
+            name={name}
+            {...field}
+            inputRef={ref}
+            label={label}
+            required
+          />
+        )}
       />
     </Grid>
   )

@@ -22,19 +22,6 @@ const AddressForm = ({ checkoutToken, test }) => {
   const [shippingOption, setShippingOption] = useState('')
   const methods = useForm()
 
-  // const countries = object
-  //   .entries(shippingCountries)
-  //   .map(([code, name]) => ({ id: code, label: name }))
-  // const subdivisions = object
-  //   .entries(shippingSubdivisions)
-  //   .map(([code, name]) => ({ id: code, label: name }))
-  // const options = object
-  //   .entries(shippingOptions)
-  //   .map((s0) => ({
-  //     id: s0.id,
-  //     label: `${s0.description} - (${s0.price.formatted_with_symbol}`,
-  //   }))
-
   const fetchShippingCountries = async (checkoutTokenId) => {
     const { countries } = await commerce.services.localeListShippingCountries(
       checkoutTokenId
@@ -160,7 +147,7 @@ const AddressForm = ({ checkoutToken, test }) => {
             </Grid>
           </Grid>
           <br />
-          <div sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Button component={Link} variant="outlined" to="/cart">
               Back to Cart
             </Button>

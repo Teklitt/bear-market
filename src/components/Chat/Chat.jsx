@@ -1,10 +1,10 @@
 import React from 'react'
-import message from "../../assets/message.png"
+import image from '../../assets/message.png'
 
 const Chat = () => {
   return (
     <div>
-        <img src={message}/>   
+      <img src={image} alt="Message function" />
     </div>
   )
 }
